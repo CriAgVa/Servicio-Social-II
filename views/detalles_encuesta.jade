@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    div(ng-controller="EncuestasCtrl" ng-init="encuesta_activa.id = '#{id}'; departamento='#{departamento}' ; encuesta_activa.departamento = '#{enc.departamento}';  encuesta_activa.fecha = '#{enc.fecha}';  encuesta_activa.folio = '#{enc.folio}';  encuesta_activa.periodo = '#{enc.periodo}';  encuesta_activa.tramite = '#{enc.tramite}';  getPreguntas(); prueba();")
+        h1= title 
+        p Has llegado a #{title}
+        .row
+        p <b> Departamento </b> {{encuesta_activa.departamento}} 
+        p <b> Fecha </b> {{encuesta_activa.fecha}} 
+        p <b> Folio </b> {{encuesta_activa.folio}}
+        p <b> Periodo </b> {{encuesta_activa.periodo}}
+        p <b> Tramite </b> {{encuesta_activa.tramite}}
+          
+        
+            .column
+                table
+                    tr 
+                        th Pregunta 
+                        th Respuesta 
+                        th Valor
+                    tr(ng-repeat="e in encuesta" ng-click="enviar($index)")
+                        td {{e.pregunta}}
+                        td {{e.respuesta}}
+                        td {{e.valor}}
+        
+                        
+
+block SCRIPTS 
+    script(src='../javascripts/angular/A_encuestas.js')
+    //script(src='../javascripts/excel.js')
+    //script(src='routes/excel.js')

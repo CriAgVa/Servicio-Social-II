@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    div(ng-controller="EncuestasCtrl" ng-init="departamento='Deportivas'")
+        h1= title
+        p Has llegado a #{title}
+        p {{hola}}
+        p Filtrar por periodo: 
+            select(ng-model="periodo")
+                option(ng-repeat="p in periodos"){{p}}
+            button(ng-click="filtrar()") Filtrar
+        button(id="botonP" ng-click="obtener_valores()") Obtener 
+        .row
+            .column
+                table(ng-show="tabla_visibility")
+                    tr 
+                        th Departamento 
+                        th Fecha 
+                        th Folio
+                        th Periodo 
+                        th Tramite
+                    tr(ng-repeat="enc in encuestasDeporte" ng-click="enviar($index)")
+                        td {{enc.departamento}}
+                        td {{enc.fecha}}
+                        td {{enc.folio}}
+                        td {{enc.periodo}}
+                        td {{enc.tramite}}
+                table(ng-show="respuestas_visibility")
+                    tr 
+                        th Folio 
+                        th Comentario 
+                        th 
+                    tr(ng-repeat = "fc in encuestas_reporte" ng-click="enviar($index)")
+                        td {{fc.folio}}
+                        td {{fc.comentario}}
+                        td 
+                            table 
+                                tr 
+                                    th Pregunta 
+                                    th Respuesta 
+                                tr(ng-repeat = "pr in fc.pregunta")
+                                    td {{pr.pregunta}}
+                                    td {{pr.valor}}
+
+block SCRIPTS 
+    script(src='../javascripts/angular/A_encuestas.js')
