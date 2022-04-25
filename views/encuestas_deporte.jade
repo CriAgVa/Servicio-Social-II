@@ -33,10 +33,10 @@ block content
                     tr(ng-repeat = "fc in encuestas_reporte" ng-click="enviar($index)")
                         td {{fc.folio}}
                         td {{fc.comentario}}
-                        td 
+                        td  
                             table 
                                 tr 
-                                    th Pregunta 
+                                    th Pregunta
                                     th Respuesta 
                                 tr(ng-repeat = "pr in fc.pregunta")
                                     td {{pr.pregunta}}
